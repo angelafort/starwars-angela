@@ -12,9 +12,47 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			characters: [],
+			planets: [],
+			starships: []
+			
 		},
 		actions: {
+
+			getCharacters: function() {
+				const store = getStore()
+				fetch("https://www.swapi.tech/api/people")
+				.then(response => response.json())
+				.then(data => {
+					setStore({ characters: data.results }); // Almacenamos los personajes en el estado global
+				})
+				.catch(error => console.error(error));
+			},
+
+			getPlanets: function() {
+				const store = getStore()
+				fetch("https://www.swapi.tech/api/planets")
+				.then(response => response.json())
+				.then(data => {
+					console.log("Planets data:", data); 
+					setStore({ planets: data.results }); // Almacenamos los personajes en el estado global
+				})
+				.catch(error => console.error(error));
+			},
+
+			getStarships: function() {
+				const store = getStore()
+				fetch("https://www.swapi.tech/api/starships")
+				.then(response => response.json())
+				.then(data => {
+					setStore({ starships: data.results });
+				})
+				.catch(error => console.error(error));
+			},
+
+
+			
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
