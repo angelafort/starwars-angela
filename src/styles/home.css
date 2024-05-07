@@ -1,8 +1,11 @@
 .home-container {
+  padding: 0 18px;
     background-image: url('https://e0.pxfuel.com/wallpapers/804/170/desktop-wallpaper-star-wars-star-background-best-background-star-wars-universe.jpg');
-    background-size: cover; 
-    background-Repeat: no-repeat;
+    background-size: contain;
     background-position: center;
+    padding-top: 10px;
 
   }
-  
+  .white-text {
+    color: white;
+  }

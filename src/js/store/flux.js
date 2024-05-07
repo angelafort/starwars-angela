@@ -15,7 +15,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			characters: [],
 			planets: [],
-			starships: []
+			starships: [],
+			CharacterDescription: {},
+			planetDetail: {},
+			StarshipDetail: {},
+			Favorites: [],
 			
 		},
 		actions: {
@@ -25,7 +29,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch("https://www.swapi.tech/api/people")
 				.then(response => response.json())
 				.then(data => {
-					setStore({ characters: data.results }); // Almacenamos los personajes en el estado global
+					setStore({ characters: data.results }); 
 				})
 				.catch(error => console.error(error));
 			},
@@ -35,8 +39,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch("https://www.swapi.tech/api/planets")
 				.then(response => response.json())
 				.then(data => {
-					console.log("Planets data:", data); 
-					setStore({ planets: data.results }); // Almacenamos los personajes en el estado global
+					setStore({ planets: data.results }); 
 				})
 				.catch(error => console.error(error));
 			},
@@ -51,6 +54,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.catch(error => console.error(error));
 			},
 
+			getCharacterDescription: (id) => {
+				fetch(`https://www.swapi.tech/api/people/${id}`)
+				.then(response => response.json())
+				.then(data => { setStore({ CharacterDescription: data.result.properties }) })
+				.catch(error => { error })
+			},
+			
+
+			getPlanetDetail: (id) => {
+				fetch(`https://www.swapi.tech/api/planets/${id}`)
+					.then(response => response.json())
+					.then(data => { setStore({ planetDetail: data.result.properties }) })
+					.catch(error => { error })
+			},
+
+			AddFavorites: (name) => {
+				const store = getStore();
+				if (store) {
+					let storeFavorites = store.Favorites;
+					setStore({ Favorites: [...storeFavorites, name] });
+				}
+			},
 
 			
 			// Use getActions to call a function within a fuction
