@@ -10,6 +10,7 @@ import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import Moreinfo from "./views/Moreinfo";
 import Planetsinfo from "./views/Planetsinfo";
+import Starshipsinfo from "./views/Starshipsinfo";
 
 
 //create your first component
@@ -30,6 +31,7 @@ const Layout = () => {
 						<Route path="*" element={<h1>Not found!</h1>} />
 						<Route path="/Moreinfo/:id" element={<Moreinfo />} />
 						<Route path="/Planetsinfo/:id" element={<Planetsinfo />} />
+						<Route path="/Starshipsinfo/:id" element={<Starshipsinfo />} />
 					</Routes>
 				</ScrollToTop>
 			</BrowserRouter>

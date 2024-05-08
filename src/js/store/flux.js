@@ -19,7 +19,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			CharacterDescription: {},
 			planetDetail: {},
 			StarshipDetail: {},
-			Favorites: [],
+			favoriteItems: [],
+
 			
 		},
 		actions: {
@@ -69,13 +70,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => { error })
 			},
 
-			AddFavorites: (name) => {
+			getStarshipsdetail: (id) => {
+				fetch(`https://www.swapi.tech/api/vehicles/${id}`)
+					.then(response => response.json())
+					.then(data => {
+						console.log("Data received from API:", data);
+						setStore({ StarshipsDetail: data.result.properties });
+					})
+					.catch(error => { 
+						console.error(error);
+					});
+			},
+			
+			
+			addFavoriteItem: (name) => { // Cambio de nombre a addFavoriteItem
 				const store = getStore();
 				if (store) {
-					let storeFavorites = store.Favorites;
-					setStore({ Favorites: [...storeFavorites, name] });
+					let storeFavoriteItems = store.favoriteItems; // Cambio de nombre a favoriteItems
+					setStore({ favoriteItems: [...storeFavoriteItems, name] }); // Cambio de nombre a favoriteItems
 				}
 			},
+
+			removeFavorite: (name) => {
+                const store = getStore();
+                if (store) {
+                    const updatedFavorites = store.favoriteItems.filter(favorite => favorite !== name);
+                    setStore({ favoriteItems: updatedFavorites });
+				}
+			},
+
 
 			
 			// Use getActions to call a function within a fuction

@@ -22,7 +22,7 @@ const Card = ({ character, indexCharacter, actions, id }) => {
             <Link to={`/Moreinfo/${id}`} className="btn btn-outline-warning">More Info</Link>
           </div>
           <div>
-            <button onClick={() => actions.AddFavorites(character.name)} className="btn btn-outline-warning"><i className="fas fa-heart"></i></button>
+            <button onClick={() => actions.addFavoriteItem(character.name)} className="btn btn-outline-warning"><i className="fas fa-heart"></i></button>
           </div>
         </div>
       </div>

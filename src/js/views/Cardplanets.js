@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { Context } from '../store/appContext';
 
-const Cardplanets = ({ planet, indexPlanets, id }) => {
+const Cardplanets = ({ planet, indexPlanets }) => {
+  const { actions } = useContext(Context);
   const imageUrl = `https://starwars-visualguide.com/assets/img/planets/${indexPlanets}.jpg`;
-  const placeholderImageUrl = "https://starwars-visualguide.com/assets/img/placeholder.jpg";
+  const placeholderImageUrl = 'https://starwars-visualguide.com/assets/img/placeholder.jpg';
 
   return (
     <div className="card bg-dark text-white" style={{ minWidth: '18rem', maxWidth: '18rem', marginRight: '10px' }}>
@@ -19,7 +21,9 @@ const Cardplanets = ({ planet, indexPlanets, id }) => {
           <Link to={`/Planetsinfo/${indexPlanets}`}>
             <button className="btn btn-outline-warning">More Info</button>
           </Link>
-          <button className="btn btn-outline-warning"><i className="fas fa-heart"></i></button>
+          <button onClick={() => actions.addFavoriteItem(planet.name)} className="btn btn-outline-warning">
+            <i className="fas fa-heart"></i>
+          </button>
         </div>
       </div>
     </div>
