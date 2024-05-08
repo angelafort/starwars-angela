@@ -71,11 +71,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getStarshipsdetail: (id) => {
-				fetch(`https://www.swapi.tech/api/vehicles/${id}`)
+				fetch(`https://www.swapi.tech/api/starships/${id}`)
 					.then(response => response.json())
 					.then(data => {
 						console.log("Data received from API:", data);
-						setStore({ StarshipsDetail: data.result.properties });
+						setStore({ StarshipDetail: data.result.properties });
 					})
 					.catch(error => { 
 						console.error(error);
@@ -83,11 +83,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			
 			
-			addFavoriteItem: (name) => { // Cambio de nombre a addFavoriteItem
+			addFavoriteItem: (name) => { 
 				const store = getStore();
 				if (store) {
-					let storeFavoriteItems = store.favoriteItems; // Cambio de nombre a favoriteItems
-					setStore({ favoriteItems: [...storeFavoriteItems, name] }); // Cambio de nombre a favoriteItems
+					let storeFavoriteItems = store.favoriteItems; 
+					setStore({ favoriteItems: [...storeFavoriteItems, name] });
 				}
 			},
 
